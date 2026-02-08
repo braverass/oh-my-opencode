@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": "1.0.0",
+  "project": "oh-my-opencode",
+  "lastUpdated": "2025-02-08",
+
+  "metadata": {
+    "name": "oh-my-opencode",
+    "version": "3.1.6",
+    "description": "The Best AI Agent Harness - Batteries-Included OpenCode Plugin",
+    "license": "SUL-1.0",
+    "author": "YeonGyu-Kim",
+    "repository": "https://github.com/code-yeongyu/oh-my-opencode"
+  },
+
+  "scripts": {
+    "build": "bun build src/index.ts --outdir dist --target bun --format esm",
+    "build:all": "bun run build && bun run build:binaries",
+    "build:binaries": "bun run script/build-binaries.ts",
+    "build:schema": "bun run script/build-schema.ts",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test",
+    "postinstall": "node postinstall.mjs"
+  },
+
+  "dependencies": {
+    "core": {
+      "@ast-grep/cli": "^0.40.0",
+      "@ast-grep/napi": "^0.40.0",
+      "@clack/prompts": "^0.11.0",
+      "@code-yeongyu/comment-checker": "^0.6.1",
+      "@modelcontextprotocol/sdk": "^1.25.1",
+      "@opencode-ai/plugin": "^1.1.19",
+      "@opencode-ai/sdk": "^1.1.19",
+      "commander": "^14.0.2",
+      "js-yaml": "^4.1.1",
+      "jsonc-parser": "^3.3.1",
+      "picocolors": "^1.1.1",
+      "picomatch": "^4.0.2",
+      "vscode-jsonrpc": "^8.2.0",
+      "zod": "^4.1.8"
+    },
+    "dev": {
+      "bun-types": "latest",
+      "typescript": "^5.7.3"
+    }
+  },
+
+  "binaries": {
+    "oh-my-opencode": "./bin/oh-my-opencode.js"
+  },
+
+  "exports": {
+    ".": "./dist/index.js",
+    "./schema.json": "./dist/oh-my-opencode.schema.json"
+  },
+
+  "platforms": [
+    "darwin-arm64",
+    "darwin-x64",
+    "linux-arm64",
+    "linux-arm64-musl",
+    "linux-x64",
+    "linux-x64-musl",
+    "windows-x64"
+  ],
+
+  "agents": {
+    "oracle": {
+      "description": "Code prediction and suggestion agent",
+      "capabilities": ["predict", "suggest", "complete"]
+    },
+    "librarian": {
+      "description": "Documentation and knowledge retrieval",
+      "capabilities": ["search", "retrieve", "summarize"]
+    },
+    "frontend-engineer": {
+      "description": "UI/UX development specialist",
+      "capabilities": ["design", "implement", "review"]
+    }
+  },
+
+  "tools": {
+    "lsp": {
+      "description": "Language Server Protocol integration",
+      "features": ["diagnostics", "completion", "hover"]
+    },
+    "ast": {
+      "description": "Abstract Syntax Tree operations via @ast-grep/napi",
+      "features": ["search", "replace", "refactor", "traverse"]
+    },
+    "mcp": {
+      "description": "Model Context Protocol server support",
+      "sdk": "@modelcontextprotocol/sdk"
+    }
+  },
+
+  "features": {
+    "multiModel": "Support for multiple AI models simultaneously",
+    "parallelAgents": "Background agent execution",
+    "craftedTools": "LSP/AST tools for code manipulation",
+    "mcpIntegration": "Curated MCP servers",
+    "claudeCodeCompat": "Claude Code compatibility layer"
+  },
+
+  "warnings": {
+    "impersonation": "ohmyopencode.com is NOT affiliated with this project",
+    "officialDownloads": "Only GitHub Releases are official",
+    "claudeOAuth": "Anthropic restricted third-party OAuth access (Jan 2026)"
+  },
+
+  "patterns": {
+    "runtime": "Bun for fast build and execution",
+    "schema": "Zod for runtime validation",
+    "ast": "@ast-grep/napi for code query/transform",
+    "communication": "vscode-jsonrpc for LSP"
+  },
+
+  "community": {
+    "discord": "https://discord.gg/PUwSMR9XNk",
+    "x": "@justsisyphus"
+  }
+}
